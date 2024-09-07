@@ -171,43 +171,41 @@ java objects. But if we call the method `int port()` then a
   <h5>Don't like the NullPointerException?</h5>
   <p>
     We support <code>Optional</code> as the returned config value. For example, instead of
-    <code>int maxNumThreads();</code>, <code>Optional<Integer> maxNumThreads();</code>
+    <code>int maxNumThreads();</code>, write it as. To make a default
+    value in this case, simply use the same annotation such as <code>@DefaultValue("8")</code>. The feature is based on
+    the 3 rationals below:
 
-To make a default value in this case, simply use the same annotation such as <code>@DefaultValue("8")</code>.
+    <ol>
+      <li> Method should "return _empty_ arrays or collections, instead of nulls" (_Effective Java, Joshua Bloch, 2nd
+           Edition_, Item 43)
+      <li> For better error handling, our methods "don't return null" (_Clean Code, Robert C. Martin, 2009_, Ch. 7,
+           Don't Return Null)
+      <li> Oracle designed <a href="https://www.oracle.com/technical-resources/articles/java/java8-optional.html">Optional, which was exactly intended to replace `null` with a new standard</a>.
+    </ol>
 
-The feature is based on the 3 rationals below:
-
-<ol>
-  <li> Method should "return _empty_ arrays or collections, instead of nulls" (_Effective Java, Joshua Bloch, 2nd
-       Edition_, Item 43)
-  <li> For better error handling, our methods "don't return null" (_Clean Code, Robert C. Martin, 2009_, Ch. 7,
-       Don't Return Null)
-  <li> Oracle designed <a href="https://www.oracle.com/technical-resources/articles/java/java8-optional.html">Optional, which was exactly intended to replace `null` with a new standard</a>.
-</ol>
-
-What this feature brings to our team, and others in general, is that it allows us to promote null-check at
-compile-time. Our team believes compile-time check is good by reducing runtime-errors.
-
-"<i>Why not using the original's <a href="http://owner.aeonbits.org/docs/type-conversion/"><code>@ConverterClass</code></a></i> or a wrapper?"
-
-Because we tried and concluded they are suboptimal in our case:
-
-<ol>
-  <li> This would require every single of our applications to load an extra converter class
-  <li> ConverterClass, i.e. <code>Optional<?></code>, due to type erasure, loses type information, i.e.
-       <code><?></code>, which original project does need in order to do proper conversion
-
-
-At this moment, the fork allows the following config value types to be wrapped inside <code>Optional</code>:
-
-<ol>
-  <li> Boolean
-  <li> Integer
-  <li> String
-  <li> All Collection classes that the [original project](http://owner.aeonbits.org) supports
-</ol>
-
-We will keep working to catch up with all types supported by the original project.
+    What this feature brings to our team, and others in general, is that it allows us to promote null-check at
+    compile-time. Our team believes compile-time check is good by reducing runtime-errors.
+    
+    "<i>Why not using the original's <a href="http://owner.aeonbits.org/docs/type-conversion/"><code>@ConverterClass</code></a></i> or a wrapper?"
+    
+    Because we tried and concluded they are suboptimal in our case:
+    
+    <ol>
+      <li> This would require every single of our applications to load an extra converter class
+      <li> ConverterClass, i.e. <code>Optional<?></code>, due to type erasure, loses type information, i.e.
+           <code><?></code>, which original project does need in order to do proper conversion
+    
+    
+    At this moment, the fork allows the following config value types to be wrapped inside <code>Optional</code>:
+    
+    <ol>
+      <li> Boolean
+      <li> Integer
+      <li> String
+      <li> All Collection classes that the [original project](http://owner.aeonbits.org) supports
+    </ol>
+    
+    We will keep working to catch up with all types supported by the original project.
   </p>
 </div>
 
