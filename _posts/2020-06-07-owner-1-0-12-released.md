@@ -32,7 +32,7 @@ Bugs fixes
  * Fixed [#266](https://github.com/lviggiano/owner/issues/266): PropertyEditor - Concurrency Issues
 
 Downloadable artifacts are published on [GitHub](https://github.com/lviggiano/owner/releases/tag/owner-1.0.12) and
-on [Maven Central Repository](http://repo1.maven.org/maven2/org/aeonbits/owner/owner-assembly/1.0.12/).
+on [Maven Central Repository](http://repo1.maven.org/maven2/io/github/qubitpi/owner/owner-assembly/1.0.12/).
 
 
 <div class="note info">
@@ -55,7 +55,7 @@ Enhancements
 Site Enhancements
 -----------------
  * [#247](https://github.com/lviggiano/owner/pull/247): Documentation for system:properties and system:env.
- * Fixed [Sonar](https://sonarcloud.io/dashboard?id=org.aeonbits.owner%3Aowner-parent) and 
+ * Fixed [Sonar](https://sonarcloud.io/dashboard?id=io.github.qubitpi.owner%3Aowner-parent) and 
    [Travis](https://travis-ci.org/github/lviggiano/owner); but still it looks that 
    [Coveralls](https://coveralls.io/github/lviggiano/owner) has issue to link source files to github, I need to look 
    more into it.

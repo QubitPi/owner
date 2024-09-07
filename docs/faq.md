@@ -34,7 +34,7 @@ but OWNER APIs are flexible enough to let the user implement that. An example is
 
 Encrypted properties are in the list of goals for the next versions (See [#49](https://github.com/lviggiano/owner/issues/49)).
 
-  [enc-props]: https://github.com/lviggiano/owner/blob/master/src/test/java/org/aeonbits/owner/examples/EncryptedPropertiesExample.java
+  [enc-props]: https://github.com/lviggiano/owner/blob/master/src/test/java/io/github/qubitpi/owner/examples/EncryptedPropertiesExample.java
 
 ## Why OWNER API doesn't implement this ${pretty.neat.feature} ?
 

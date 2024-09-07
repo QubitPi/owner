@@ -14,8 +14,8 @@ way than using the methods that are properties mapping methods.
 Those limitations are imposed by design, but sometime users may find this problematic. So here they come in the play the
 interfaces [Mutable] and [Accessible].
 
-  [Mutable]: https://matteobaccan.github.io/owner/apidocs/latest/org/aeonbits/owner/Mutable.html
-  [Accessible]: https://matteobaccan.github.io/owner/apidocs/latest/org/aeonbits/owner/Accessible.html
+  [Mutable]: https://matteobaccan.github.io/owner/apidocs/latest/io/github/qubitpi/owner/Mutable.html
+  [Accessible]: https://matteobaccan.github.io/owner/apidocs/latest/io/github/qubitpi/owner/Accessible.html
 
 This is the hierarchy of the `Mutable` and `Accessible` interfaces:
 
