@@ -37,7 +37,7 @@ jobs:
       - name: Load CNAME file
         run: echo "owner.qubitpi.org" > ./owner-site/site/CNAME
       - name: Deploy documentation to GitHub Pages
-        #if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -48,6 +48,7 @@ jobs:
 
   release:
     name: Release to Maven Central
+    needs: test
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:

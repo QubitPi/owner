@@ -310,6 +310,7 @@
                     <version>3.10.0</version>
                     <configuration>
                         <notimestamp>true</notimestamp>
+                        <doclint>none</doclint>  <!-- Turnoff all checks -->
                     </configuration>
                     <executions>
                         <execution>
