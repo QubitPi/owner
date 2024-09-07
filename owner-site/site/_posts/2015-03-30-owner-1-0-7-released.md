@@ -34,4 +34,4 @@ Bugs fixes
    See [#114](https://github.com/lviggiano/owner/issues/114). Thanks [@ksaritek](https://github.com/ksaritek) for the patience.
 
 Downloadable artifacts are published on [GitHub](https://github.com/lviggiano/owner/releases/tag/owner-parent-1.0.7) and
-on [Maven Central Repository](http://repo1.maven.org/maven2/org/aeonbits/owner/owner-assembly/1.0.7/).
+on [Maven Central Repository](http://repo1.maven.org/maven2/io/github/qubitpi/owner/owner-assembly/1.0.7/).

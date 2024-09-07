@@ -13,11 +13,11 @@
 
     <parent>
         <artifactId>owner-parent</artifactId>
-        <groupId>org.aeonbits.owner</groupId>
+        <groupId>io.github.qubitpi.owner</groupId>
         <version>1.0.13-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.aeonbits.owner</groupId>
+    <groupId>io.github.qubitpi.owner</groupId>
     <artifactId>owner-java8</artifactId>
     <name>OWNER :: Java 8 Support</name>
     <version>1.0.13-SNAPSHOT</version>
@@ -61,7 +61,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.aeonbits.owner</groupId>
+            <groupId>io.github.qubitpi.owner</groupId>
             <artifactId>owner</artifactId>
             <version>1.0.13-SNAPSHOT</version>
         </dependency>
