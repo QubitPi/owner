@@ -55,9 +55,9 @@ jobs:
       - name: Release
         uses: QubitPi/maven-central-release-action@master
         with:
+          java-version: 8
           user: QubitPi
           email: jack20220723@gmail.com
-          java-version: 8
           gpg-keyname: ${{ secrets.GPG_KEYNAME }}
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
