@@ -20,7 +20,7 @@ Generally speaking you just need to reference the library jar in the CLASSPATH
 environment variable, as explained in the [Java tutorial][3].
 
   [1]: http://docs.oracle.com/javase/tutorial/deployment/jar/
-  [2]: http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.aeonbits.owner%22%20AND%20a%3A%22owner%22
+  [2]: http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22io.github.qubitpi.owner%22%20AND%20a%3A%22owner%22
   [3]: http://docs.oracle.com/javase/tutorial/essential/environment/paths.html
 
 Maven
@@ -32,7 +32,7 @@ to your pom.xml:
 ```xml
 <dependencies>
     <dependency>
-        <groupId>org.aeonbits.owner</groupId>
+        <groupId>io.github.qubitpi.owner</groupId>
         <artifactId>owner</artifactId>
         <version>1.0.8</version>
     </dependency>
@@ -44,7 +44,7 @@ need to check if there is any newer version.
 
 <div class="note">
   <h5>Finding the latest version released</h5>
-  <p>You can search on the <a href="http://repo1.maven.org/maven2/org/aeonbits/owner/owner/">Maven Central Repository</a>
+  <p>You can search on the <a href="http://repo1.maven.org/maven2/io/github/qubitpi/owner/owner/">Maven Central Repository</a>
   to verify the latest available release.</p>
 </div>
 
@@ -65,7 +65,7 @@ dependency in your project `pom.xml`:
 ```xml
 <dependencies>
         <dependency>
-            <groupId>org.aeonbits.owner</groupId>
+            <groupId>io.github.qubitpi.owner</groupId>
             <artifactId>owner-java8</artifactId>
             <version>1.0.6</version>
         </dependency>

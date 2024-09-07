@@ -186,7 +186,7 @@ servers.prod.password=secret
 You can define the configuration mapping file as:
 
 ```java
-@Sources("classpath:org/aeonbits/owner/variableexpansion/KeyExpansionExample.xml")
+@Sources("classpath:io/github/qubitpi/owner/variableexpansion/KeyExpansionExample.xml")
 public interface ExpandsFromAnotherKey extends Config {
 
     @DefaultValue("dev")
