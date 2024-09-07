@@ -194,7 +194,7 @@ java objects. But if we call the method `int port()` then a
       <li> This would require every single of our applications to load an extra converter class
       <li> ConverterClass, i.e. <code>Optional&lt;?&gt;</code>, due to type erasure, loses type information, i.e.
            <code><?></code>, which original project does need in order to do proper conversion
-    
+    </ol>
     
     At this moment, the fork allows the following config value types to be wrapped inside <code>Optional</code>:
     
