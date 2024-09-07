@@ -174,7 +174,7 @@ java objects. But if we call the method `int port()` then a
   <code>int maxNumThreads();</code>, write it as <code>Optional&lt;Integer&gt; maxNumThreads();</code>.
   
   <pre>
-  Optional<Integer> maxNumThreads();
+  Optional&lt;Integer&gt; maxNumThreads();
   </pre>
 
   To make a default
@@ -186,14 +186,18 @@ java objects. But if we call the method `int port()` then a
          Edition</i>, Item 43) </li>
     <li> For better error handling, our methods "don't return null" (<i>Clean Code, Robert C. Martin, 2009</i>, Ch. 7,
          Don't Return Null) </li>
-    <li> Oracle designed <a href="https://www.oracle.com/technical-resources/articles/java/java8-optional.html">Optional, which was exactly intended to replace `null` with a new standard</a>. </li>
+    <li> Oracle designed <a href="https://www.oracle.com/technical-resources/articles/java/java8-optional.html">Optional, which was exactly intended to replace <code>null</code> with a new standard</a>. </li>
   </ol>
 
-  What this feature brings to our team, and others in general, is that it allows us to promote null-check at
-  compile-time. Our team believes compile-time check is good by reducing runtime-errors.
+  This feature allows us to promote null-check at compile-time. Compile-time check is beneficial by reducing
+  runtime-errors.
+
+  <br>
 
   "<i>Why not using the original's <a href="https://matteobaccan.github.io/owner/docs/type-conversion/"><code>@ConverterClass</code></a></i>
   or a wrapper?"
+
+  <br>
 
   Because we tried and concluded they are suboptimal in our case:
 
