@@ -28,6 +28,9 @@ public interface ServerConfig extends Config {
     String hostname();
     @DefaultValue("42")
     int maxThreads();
+
+    @DefaultValue("77")
+    Optional<Integer> someInteger();
 }
 ```
 
@@ -165,13 +168,53 @@ java objects. But if we call the method `int port()` then a
 `NullPointerException` will be raised.
 
 <div class="note">
-  <h5>You don't want the NullPointerException?</h5>
-  <p>
-    If you don't want to get the NullPointerException, you can just define
-    a default value. For instance, you can set <code>@DefaultValue("0")</code> for
-    an <code>int</code> return type, or a <code>@DefaultValue("false")</code> for a 
-    <code>boolean</code> return type, and so on...
-  </p>
+  <h5>Don't like the NullPointerException?</h5>
+
+  We support <code>Optional</code> as the returned config value. For example, instead of
+  <code>int port();</code>, write it as <code>Optional&lt;Integer&gt; port();</code>.
+
+  To make a default
+  value in this case, simply use the same annotation such as <code>@DefaultValue("8080")</code>. The feature is based on
+  the 3 rationals below:
+
+  <ol>
+    <li> Method should "return empty arrays or collections, instead of nulls" (<i>Effective Java, Joshua Bloch, 2nd
+         Edition</i>, Item 43) </li>
+    <li> For better error handling, our methods "don't return null" (<i>Clean Code, Robert C. Martin, 2009</i>, Ch. 7,
+         Don't Return Null) </li>
+    <li> Oracle designed <a href="https://www.oracle.com/technical-resources/articles/java/java8-optional.html">Optional, which was exactly intended to replace <code>null</code> with a new standard</a>. </li>
+  </ol>
+
+  This feature allows us to promote null-check at compile-time. Compile-time check is beneficial by reducing
+  runtime-errors.
+
+  <br>
+  <br>
+
+  "<i>Why not using the original's <a href="https://matteobaccan.github.io/owner/docs/type-conversion/"><code>@ConverterClass</code></a></i>
+  or a wrapper?"
+
+  <br>
+  <br>
+
+  Because we tried and concluded they are suboptimal in our case:
+
+  <ol>
+    <li> This would require every single of our applications to load an extra converter class </li>
+    <li> ConverterClass, i.e. <code>Optional&lt;?&gt;</code>, due to type erasure, loses type information of
+         <code>&lt;?&gt;</code>, which original project does need in order to do proper conversion </li>
+  </ol>
+
+  At this moment, the fork allows the following config value types to be wrapped inside <code>Optional</code>:
+
+  <ol>
+    <li> Boolean </li>
+    <li> Integer </li>
+    <li> String </li>
+    <li> All Collection classes that the <a href="https://matteobaccan.github.io/owner/">original project</a> supports </li>
+  </ol>
+
+  We will keep working to catch up with all types supported by the original project.
 </div>
 
 Conclusions

@@ -12,11 +12,14 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.aeonbits.owner.Config.DisableableFeature.PARAMETER_FORMATTING;
 import static org.aeonbits.owner.Config.DisableableFeature.VARIABLE_EXPANSION;
+import static org.aeonbits.owner.Converters.COLLECTION;
 import static org.aeonbits.owner.Converters.SpecialValue.NULL;
 import static org.aeonbits.owner.Converters.convert;
 import static org.aeonbits.owner.PreprocessorResolver.resolvePreprocessors;
@@ -83,8 +86,18 @@ class PropertiesInvocationHandler implements InvocationHandler, Serializable {
             String unexpandedKey = key(method);
             value = propertiesManager.getProperty(unexpandedKey);
         }
-        if (value == null)
+        if (value == null) {
+            if (Optional.class.isAssignableFrom(method.getReturnType())) {
+                return Optional.empty();
+            }
+
+            if (Collection.class.isAssignableFrom(method.getReturnType())) {
+                return COLLECTION.tryConvert(method, method.getReturnType(), null);
+            }
+
             return null;
+        }
+
         value = preProcess(method, value);
         Object result = convert(method, method.getReturnType(),
                 format(method, propertiesManager

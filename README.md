@@ -41,6 +41,9 @@ public interface ServerConfig extends Config {
     int port();
     String hostname();
     int maxThreads();
+
+    @DefaultValue("77")
+    Optional<Integer> someInteger();
 }
 ```
 

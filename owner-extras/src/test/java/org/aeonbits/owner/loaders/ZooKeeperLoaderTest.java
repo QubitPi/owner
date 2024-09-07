@@ -32,6 +32,7 @@ import static org.junit.Assert.*;
 /**
  * @author Koray Sariteke
  * @author Luigi R. Viggiano
+ *
  */
 public class ZooKeeperLoaderTest {
     private TestingServer server;
@@ -63,7 +64,7 @@ public class ZooKeeperLoaderTest {
     public void whenPathIsWrongEverythingIsNull() throws Exception {
         ZooKeeperWrongPathConfig config = configFactory.create(ZooKeeperWrongPathConfig.class);
         assertNull(config.notAvailable());
-        assertNull(config.greetings());
+        assertTrue(config.greetings().isEmpty());
         assertNull(config.thanks());
     }
 
