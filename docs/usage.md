@@ -171,14 +171,7 @@ java objects. But if we call the method `int port()` then a
   <h5>Don't like the NullPointerException?</h5>
   <p>
     We support <code>Optional</code> as the returned config value. For example, instead of
-
-<pre>
-int maxNumThreads();
-</pre>
-
-<pre>
-Optional<Integer> maxNumThreads();
-</pre>
+    <code>int maxNumThreads();</code>, <code>Optional<Integer> maxNumThreads();</code>
 
 To make a default value in this case, simply use the same annotation such as <code>@DefaultValue("8")</code>.
 
