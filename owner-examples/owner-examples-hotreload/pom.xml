@@ -12,7 +12,7 @@
     <parent>
         <artifactId>owner-examples</artifactId>
         <groupId>io.github.qubitpi.owner</groupId>
-        <version>1.0.13-SNAPSHOT</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>io.github.qubitpi.owner</groupId>
             <artifactId>owner</artifactId>
-            <version>1.0.13-SNAPSHOT</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <build>
