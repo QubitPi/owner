@@ -176,11 +176,11 @@ java objects. But if we call the method `int port()` then a
     the 3 rationals below:
 
     <ol>
-      <li> Method should "return _empty_ arrays or collections, instead of nulls" (_Effective Java, Joshua Bloch, 2nd
-           Edition_, Item 43)
-      <li> For better error handling, our methods "don't return null" (_Clean Code, Robert C. Martin, 2009_, Ch. 7,
-           Don't Return Null)
-      <li> Oracle designed <a href="https://www.oracle.com/technical-resources/articles/java/java8-optional.html">Optional, which was exactly intended to replace `null` with a new standard</a>.
+      <li> Method should "return empty arrays or collections, instead of nulls" (<i>Effective Java, Joshua Bloch, 2nd
+           Edition</i>, Item 43) </li>
+      <li> For better error handling, our methods "don't return null" (<i>Clean Code, Robert C. Martin, 2009</i>, Ch. 7,
+           Don't Return Null) </li>
+      <li> Oracle designed <a href="https://www.oracle.com/technical-resources/articles/java/java8-optional.html">Optional, which was exactly intended to replace `null` with a new standard</a>. </li>
     </ol>
 
     <br>
@@ -199,9 +199,9 @@ java objects. But if we call the method `int port()` then a
     <br>
 
     <ol>
-      <li> This would require every single of our applications to load an extra converter class
+      <li> This would require every single of our applications to load an extra converter class </li>
       <li> ConverterClass, i.e. <code>Optional&lt;?&gt;</code>, due to type erasure, loses type information of
-           <code>&lt;?&gt;</code>, which original project does need in order to do proper conversion
+           <code>&lt;?&gt;</code>, which original project does need in order to do proper conversion </li>
     </ol>
     
     <br>
@@ -211,10 +211,10 @@ java objects. But if we call the method `int port()` then a
     <br>
 
     <ol>
-      <li> Boolean
-      <li> Integer
-      <li> String
-      <li> All Collection classes that the <a href="https://matteobaccan.github.io/owner/">original project</a> supports
+      <li> Boolean </li>
+      <li> Integer </li>
+      <li> String </li>
+      <li> All Collection classes that the <a href="https://matteobaccan.github.io/owner/">original project</a> supports </li>
     </ol>
 
     <br>
