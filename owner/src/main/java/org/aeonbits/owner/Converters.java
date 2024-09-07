@@ -19,6 +19,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Pattern;
 
 import static java.beans.PropertyEditorManager.findEditor;
 import static java.lang.Boolean.getBoolean;
@@ -36,6 +37,33 @@ import static org.aeonbits.owner.util.Reflection.isClassAvailable;
  * @author Luigi R. Viggiano
  */
 enum Converters {
+
+    OPTIONAL {
+        @Override
+        Object tryConvert(final Method targetMethod, final Class<?> targetType, final String text) {
+            if (!Optional.class.isAssignableFrom(targetType)) {
+                return SKIP;
+            }
+
+            String lowerCased = text.toLowerCase(Locale.ENGLISH);
+            if ("true".equals(lowerCased) || "false".equals(lowerCased)) {
+                return Optional.of(Boolean.valueOf(lowerCased));
+            }
+
+            Pattern englishStrPattern = Pattern.compile("[a-z]");
+            if (englishStrPattern.matcher(text).find()) {
+                return Optional.of(text);
+            }
+
+            try {
+                return Optional.of(Integer.valueOf(text));
+            } catch (NumberFormatException exception) {
+                throw new IllegalStateException(
+                        "Optional values can only be boolean, string, number, or collection type"
+                );
+            }
+        }
+    },
 
     ARRAY {
         @Override
@@ -68,9 +96,14 @@ enum Converters {
         Object tryConvert(Method targetMethod, Class<?> targetType, String text) {
             if (!Collection.class.isAssignableFrom(targetType)) return SKIP;
 
+            Collection<Object> result = instantiateCollection(targetType);
+
+            if (text == null) {
+                return result;
+            }
+
             Object[] array = convertToArray(targetMethod, text);
             Collection<Object> collection = Arrays.asList(array);
-            Collection<Object> result = instantiateCollection(targetType);
             result.addAll(collection);
             return result;
         }

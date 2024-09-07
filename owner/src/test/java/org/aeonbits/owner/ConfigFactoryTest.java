@@ -15,19 +15,43 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.Properties;
 
 import static org.aeonbits.owner.util.UtilTest.save;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Luigi R. Viggiano
  */
 public class ConfigFactoryTest implements TestConstants {
+
+    interface OptionalConfig extends Config {
+
+        @DefaultValue("true")
+        Optional<Boolean> someBoolean();
+        Optional<Boolean> someNonExistingBoolean();
+
+        @DefaultValue("77")
+        Optional<Integer> someInteger();
+        Optional<Integer> someNonExistingInteger();
+
+        @DefaultValue("defaultString")
+        Optional<String> someString();
+        Optional<String> someNonExistingString();
+
+        @DefaultValue("foo, bar, bat")
+        List<String> someList();
+        List<String> someNonExistingList();
+    }
 
     @Sources("file:${mypath}/myconfig.properties")
     interface MyConfig extends Config {
@@ -42,6 +66,24 @@ public class ConfigFactoryTest implements TestConstants {
             setProperty("someValue", "foobar");
         }});
     }
+
+    @Test
+    public void testOptional() {
+        OptionalConfig config = ConfigFactory.create(OptionalConfig.class);
+
+        assertEquals(true, config.someBoolean().get());
+        assertFalse(config.someNonExistingBoolean().isPresent());
+
+        assertEquals(77, config.someInteger().get().intValue());
+        assertFalse(config.someNonExistingInteger().isPresent());
+
+        assertEquals("defaultString", config.someString().get());
+        assertFalse(config.someNonExistingString().isPresent());
+
+        assertEquals(Arrays.asList("foo", "bar", "bat"), config.someList());
+        assertTrue(config.someNonExistingList().isEmpty());
+    }
+
 
     @Test
     public void testSetProperty()  {
