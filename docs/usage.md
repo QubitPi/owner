@@ -202,7 +202,7 @@ java objects. But if we call the method `int port()` then a
       <li> Boolean
       <li> Integer
       <li> String
-      <li> All Collection classes that the [original project](http://owner.aeonbits.org) supports
+      <li> All Collection classes that the <a href="http://owner.aeonbits.org">original project</a> supports
     </ol>
     
     We will keep working to catch up with all types supported by the original project.
