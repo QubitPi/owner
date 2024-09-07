@@ -1,0 +1,209 @@
+/*
+ * Copyright (c) 2012-2015, Luigi R. Viggiano
+ * All rights reserved.
+ *
+ * This software is distributable under the BSD license.
+ * See the terms of the BSD license in the documentation provided with this software.
+ */
+
+package io.github.qubitpi.owner;
+
+import io.github.qubitpi.owner.Config.Sources;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.Properties;
+
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
+import io.github.qubitpi.owner.util.UtilTest;
+
+/**
+ * @author Luigi R. Viggiano
+ */
+public class ConfigFactoryTest implements TestConstants {
+
+    interface OptionalConfig extends Config {
+
+        @DefaultValue("true")
+        Optional<Boolean> someBoolean();
+        Optional<Boolean> someNonExistingBoolean();
+
+        @DefaultValue("77")
+        Optional<Integer> someInteger();
+        Optional<Integer> someNonExistingInteger();
+
+        @DefaultValue("defaultString")
+        Optional<String> someString();
+        Optional<String> someNonExistingString();
+
+        @DefaultValue("foo, bar, bat")
+        List<String> someList();
+        List<String> someNonExistingList();
+    }
+
+    @Sources("file:${mypath}/myconfig.properties")
+    interface MyConfig extends Config {
+        @DefaultValue("defaultValue")
+        String someValue();
+    }
+
+    @Before
+    public void before() throws IOException {
+        ConfigFactory.setProperties(null);
+        UtilTest.save(new File(RESOURCES_DIR + "/myconfig.properties"), new Properties() {{
+            setProperty("someValue", "foobar");
+        }});
+    }
+
+    @Test
+    public void testOptional() {
+        OptionalConfig config = ConfigFactory.create(OptionalConfig.class);
+
+        assertEquals(true, config.someBoolean().get());
+        assertFalse(config.someNonExistingBoolean().isPresent());
+
+        assertEquals(77, config.someInteger().get().intValue());
+        assertFalse(config.someNonExistingInteger().isPresent());
+
+        assertEquals("defaultString", config.someString().get());
+        assertFalse(config.someNonExistingString().isPresent());
+
+        assertEquals(Arrays.asList("foo", "bar", "bat"), config.someList());
+        assertTrue(config.someNonExistingList().isEmpty());
+    }
+
+
+    @Test
+    public void testSetProperty()  {
+        ConfigFactory.setProperty("mypath", RESOURCES_DIR);
+
+        MyConfig cfg = ConfigFactory.create(MyConfig.class);
+
+        assertEquals("foobar", cfg.someValue());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetPropertyNullKey() {
+        ConfigFactory.setProperty(null, "foobar");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetPropertyEmptyKey() {
+        ConfigFactory.setProperty("", "foobar");
+    }
+
+    @Test
+    public void testSetPropertyTwice()  {
+        assertNull(ConfigFactory.setProperty("mypath", RESOURCES_DIR));
+        assertEquals(RESOURCES_DIR, ConfigFactory.setProperty("mypath", RESOURCES_DIR + "-2"));
+        assertEquals(RESOURCES_DIR + "-2", ConfigFactory.getProperty("mypath"));
+    }
+
+    @Test
+    public void testGetProperties() {
+        ConfigFactory.getProperties().setProperty("mypath", RESOURCES_DIR);
+
+        MyConfig cfg = ConfigFactory.create(MyConfig.class);
+
+        assertEquals("foobar", cfg.someValue());
+    }
+
+    @Test
+    public void testSetProperties() {
+        ConfigFactory.setProperties(new Properties() {{
+            setProperty("mypath", RESOURCES_DIR);
+        }});
+
+        MyConfig cfg = ConfigFactory.create(MyConfig.class);
+
+        assertEquals("foobar", cfg.someValue());
+    }
+
+    @Test
+    public void testSetPropertiesNullObject() {
+        ConfigFactory.setProperties(null);
+
+        MyConfig cfg = ConfigFactory.create(MyConfig.class);
+
+        assertEquals("defaultValue", cfg.someValue());
+    }
+
+    @Test
+    public void testGetProperty() {
+        ConfigFactory.setProperty("mypath", RESOURCES_DIR);
+        assertEquals(RESOURCES_DIR, ConfigFactory.getProperty("mypath"));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetPropertyNullKey() {
+        ConfigFactory.getProperty(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetPropertiesEmptyKey() {
+        ConfigFactory.getProperty("");
+    }
+
+    @Test
+    public void testGetClearProperty() {
+        ConfigFactory.setProperty("mypath", RESOURCES_DIR);
+        assertEquals(RESOURCES_DIR, ConfigFactory.clearProperty("mypath"));
+        assertNull(ConfigFactory.getProperty("mypath"));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testClearPropertyNullKey() {
+        ConfigFactory.clearProperty(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testClearPropertyEmptyKey() {
+        ConfigFactory.clearProperty("");
+    }
+
+    @Sources("${myurl}")
+    interface MyConfigWithoutProtocol extends Config, Accessible {
+        @DefaultValue("defaultValue")
+        String someValue();
+    }
+
+    @Test
+    public void testSetPropertyWithoutProtocol() {
+        ConfigFactory.setProperty("mypath", RESOURCES_DIR);
+        ConfigFactory.setProperty("myurl", "file:${mypath}/myconfig.properties");
+
+        MyConfigWithoutProtocol cfg = ConfigFactory.create(MyConfigWithoutProtocol.class);
+
+        assertEquals("foobar", cfg.someValue());
+    }
+
+    @Test
+    public void testSetPropertyWithoutProtocolWhenFileIsNotFound()  {
+        ConfigFactory.setProperty("mypath", RESOURCES_DIR);
+        ConfigFactory.setProperty("myurl", "file:${mypath}/non-existent.properties");
+
+        MyConfigWithoutProtocol cfg = ConfigFactory.create(MyConfigWithoutProtocol.class);
+
+        assertEquals("defaultValue", cfg.someValue());
+        assertThat(cfg.propertyNames(), contains("someValue"));
+        assertThat(cfg.propertyNames().size(), is(1));
+    }
+
+    @After
+    public void after() {
+        ConfigFactory.setProperties(null); // clean up things.
+    }
+}

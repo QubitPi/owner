@@ -37,7 +37,7 @@ jobs:
       - name: Load CNAME file
         run: echo "owner.qubitpi.org" > ./owner-site/site/CNAME
       - name: Deploy documentation to GitHub Pages
-        #if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -45,3 +45,21 @@ jobs:
           enable_jekyll: true
           user_name: QubitPi
           user_email: jack20220723@gmail.com
+
+  release:
+    name: Release to Maven Central
+    needs: test
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release
+        uses: QubitPi/maven-central-release-action@master
+        with:
+          java-version: 8
+          user: QubitPi
+          email: jack20220723@gmail.com
+          gpg-keyname: ${{ secrets.GPG_KEYNAME }}
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          server-username: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          server-password: ${{ secrets.MAVEN_CENTRAL_TOKEN }}

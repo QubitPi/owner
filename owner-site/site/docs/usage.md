@@ -21,7 +21,7 @@ To access this properties file you need to define a convenient Java interface
 `ServerConfig.java` in the same package:
 
 ```java
-import org.aeonbits.owner.Config;
+import io.github.qubitpi.owner.Config;
 
 public interface ServerConfig extends Config {
     int port();

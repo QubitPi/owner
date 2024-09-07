@@ -9,7 +9,7 @@ categories: [release]
 
 v1.0.2 contains some key enhancements and bug fixes:
 
- * Changed package name from `owner` to `org.aeonbits.owner`.
+ * Changed package name from `owner` to `io.github.qubitpi.owner`.
    Sorry to break backward compatibility, but this has been necessary in order to publish the artifact on Maven Central
    Repository.
  * Custom & special return types.

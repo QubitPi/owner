@@ -71,7 +71,7 @@ DOWNLOAD
 --------
 
 Public Releases can be downloaded from [GitHub Releases](https://github.com/lviggiano/owner/releases) page or
-[Maven Central Repository](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.aeonbits.owner%22%20AND%20a%3A%22owner%22).
+[Maven Central Repository](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22io.github.qubitpi.owner%22%20AND%20a%3A%22owner%22).
 
 
 DOCUMENTATION
