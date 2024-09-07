@@ -28,6 +28,9 @@ public interface ServerConfig extends Config {
     String hostname();
     @DefaultValue("42")
     int maxThreads();
+
+    @DefaultValue("77")
+    Optional<Integer> someInteger();
 }
 ```
 
@@ -167,55 +170,17 @@ java objects. But if we call the method `int port()` then a
 <div class="note">
   <h5>Don't like the NullPointerException?</h5>
   <p>
-    We support <code>Optional</code> as the returned config value. For example, we turn what's on left to what's on the
-    right in the table below
+    We support <code>Optional</code> as the returned config value. For example, instead of
 
-    <table>
-    <tr>
-    <th>Original</th>
-    <th>Fork</th>
-    </tr>
-    <tr>
-    <td>
-    
     <code>
-    import org.aeonbits.owner.Config;
-    
-    public interface ServerConfig extends Config {
-        
-        int port();
-        
-        String hostname();
-        
-        @DefaultValue("8")
-        int maxNumThreads();
-        
-        List<String> listProperty();
-    }
+    int maxNumThreads();
     </code>
-    
-    </td>
-    <td>
-    
+
     <code>
-    import org.aeonbits.owner.Config;
-    
-    public interface ServerConfig extends Config {
-        
-        Optional<Integer> port();
-        
-        Optional<String> hostname();
-        
-        @DefaultValue("8")
-        Optional<Integer> maxNumThreads();
-        
-        List<String> listProperty();
-    }
+    Optional<Integer> maxNumThreads();
     </code>
-    
-    </td>
-    </tr>
-    </table>
+
+    To make a default value in this case, simply use the same annotation such as <code>@DefaultValue("8")</code>.
     
     The feature is based on the 3 rationals below:
 
