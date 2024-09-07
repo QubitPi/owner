@@ -171,7 +171,7 @@ java objects. But if we call the method `int port()` then a
   <h5>Don't like the NullPointerException?</h5>
   <p>
     We support <code>Optional</code> as the returned config value. For example, instead of
-    <code>int maxNumThreads();</code>, write it as. To make a default
+    <code>int maxNumThreads();</code>, write it as <code>Optional&lt;Integer&gt; maxNumThreads();</code>. To make a default
     value in this case, simply use the same annotation such as <code>@DefaultValue("8")</code>. The feature is based on
     the 3 rationals below:
 
@@ -192,7 +192,7 @@ java objects. But if we call the method `int port()` then a
     
     <ol>
       <li> This would require every single of our applications to load an extra converter class
-      <li> ConverterClass, i.e. <code>Optional<?></code>, due to type erasure, loses type information, i.e.
+      <li> ConverterClass, i.e. <code>Optional&lt;?&gt;</code>, due to type erasure, loses type information, i.e.
            <code><?></code>, which original project does need in order to do proper conversion
     
     
