@@ -183,20 +183,20 @@ java objects. But if we call the method `int port()` then a
       <li> Oracle designed <a href="https://www.oracle.com/technical-resources/articles/java/java8-optional.html">Optional, which was exactly intended to replace `null` with a new standard</a>.
     </ol>
 
-    </br>
+    <br>
 
     What this feature brings to our team, and others in general, is that it allows us to promote null-check at
     compile-time. Our team believes compile-time check is good by reducing runtime-errors.
     
-    </br>
+    <br>
 
     "<i>Why not using the original's <a href="https://matteobaccan.github.io/owner/docs/type-conversion/"><code>@ConverterClass</code></a></i> or a wrapper?"
     
-    </br>
+    <br>
 
     Because we tried and concluded they are suboptimal in our case:
     
-    </br>
+    <br>
 
     <ol>
       <li> This would require every single of our applications to load an extra converter class
@@ -204,11 +204,11 @@ java objects. But if we call the method `int port()` then a
            <code>&lt;?&gt;</code>, which original project does need in order to do proper conversion
     </ol>
     
-    </br>
+    <br>
 
     At this moment, the fork allows the following config value types to be wrapped inside <code>Optional</code>:
     
-    </br>
+    <br>
 
     <ol>
       <li> Boolean
@@ -217,7 +217,7 @@ java objects. But if we call the method `int port()` then a
       <li> All Collection classes that the <a href="https://matteobaccan.github.io/owner/">original project</a> supports
     </ol>
 
-    </br>
+    <br>
 
     We will keep working to catch up with all types supported by the original project.
   </p>
