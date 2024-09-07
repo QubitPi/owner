@@ -1,0 +1,47 @@
+# Copyright (c) Jiaqi Liu. All rights reserved.
+---
+name: CI/CD
+
+"on":
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up JDK 8 for Build
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Build
+        run: mvn -B clean verify
+
+  documentation:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+      - name: Deploy documentation to GitHub Packages
+        run: mvn -B clean package
+      - name: Load CNAME file
+        run: echo "owner.qubitpi.org" > ./owner-site/site/CNAME
+      - name: Deploy documentation to GitHub Pages
+        if: github.ref == 'refs/heads/master'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./owner-site/site
+          enable_jekyll: true
+          user_name: QubitPi
+          user_email: jack20220723@gmail.com
