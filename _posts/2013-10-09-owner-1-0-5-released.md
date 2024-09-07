@@ -59,4 +59,4 @@ Bugs fixes
    library with the Google App Engine security restrictions.
 
 Downloadable artifacts are published on
-[Maven Central Repository](http://repo1.maven.org/maven2/io/github/qubitpi/owner/owner/1.0.5/).
+[Maven Central Repository](http://repo1.maven.org/maven2/org/aeonbits/owner/owner/1.0.5/).

@@ -91,7 +91,7 @@ Can you show me an example implementation of Decryptor?
 This is the source code of `IdentityDecryptor.java`, a no-op Decryptor returning the same value received for decrypting:
 
 ```java
-package io.github.qubitpi.owner.crypto;
+package org.aeonbits.owner.crypto;
 
 public final class IdentityDecryptor
 extends AbstractDecryptor {
@@ -108,7 +108,7 @@ methods. To get our Decryptor working, we just have to implement the other metho
 Another example is `StandardDecryptor.java`, which uses the `javax.crypto` features available in JDK.
 
 ```java
-package io.github.qubitpi.owner.crypto;
+package org.aeonbits.owner.crypto;
 
 import java.io.UnsupportedEncodingException;
 import java.security.Key;

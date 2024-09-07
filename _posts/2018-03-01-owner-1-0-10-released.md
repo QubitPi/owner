@@ -121,6 +121,6 @@ Site Enhancements
    Thanks [@fdiotalevi](https://github.com/fdiotalevi), [@bbossola](https://github.com/bbossola)
 
 Downloadable artifacts are published on [GitHub](https://github.com/lviggiano/owner/releases/tag/owner-1.0.10) and
-on [Maven Central Repository](http://repo1.maven.org/maven2/io/github/qubitpi/owner/owner-assembly/1.0.10/).
+on [Maven Central Repository](http://repo1.maven.org/maven2/org/aeonbits/owner/owner-assembly/1.0.10/).
 
 

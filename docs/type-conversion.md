@@ -123,9 +123,9 @@ more complex split logic, you can define your own tokenizer class via the
 [`@TokenizerClass`][tokenizerclass] annotation plus [`Tokenizer`][tokenizer]
 interface.
 
-  [separator]: https://matteobaccan.github.io/owner/apidocs/latest/io/github/qubitpi/owner/Config.Separator.html
-  [tokenizerclass]: https://matteobaccan.github.io/owner/apidocs/latest/io/github/qubitpi/owner/Config.TokenizerClass.html
-  [tokenizer]: https://matteobaccan.github.io/owner/apidocs/latest/io/github/qubitpi/owner/Config.Tokenizer.html
+  [separator]: https://matteobaccan.github.io/owner/apidocs/latest/org/aeonbits/owner/Config.Separator.html
+  [tokenizerclass]: https://matteobaccan.github.io/owner/apidocs/latest/org/aeonbits/owner/Config.TokenizerClass.html
+  [tokenizer]: https://matteobaccan.github.io/owner/apidocs/latest/org/aeonbits/owner/Config.Tokenizer.html
 
 Example:
 
@@ -247,9 +247,9 @@ The @ConverterClass annotation
 ------------------------------
 
 OWNER provides the
-[`@ConverterClass`](https://matteobaccan.github.io/owner/apidocs/latest/io/github/qubitpi/owner/Config.ConverterClass.html)
+[`@ConverterClass`](https://matteobaccan.github.io/owner/apidocs/latest/org/aeonbits/owner/Config.ConverterClass.html)
 annotation that allows the user to specify a customized conversion logic implementing the
-[`Converter`](https://matteobaccan.github.io/owner/apidocs/latest/io/github/qubitpi/owner/Converter.html) interface.
+[`Converter`](https://matteobaccan.github.io/owner/apidocs/latest/org/aeonbits/owner/Converter.html) interface.
 
 ```java
 interface MyConfig extends Config {
@@ -295,7 +295,7 @@ works with a single element.
 
 To see the complete test cases supported by owner see [ConverterClassTest] on GitHub.
 
-  [ConverterClassTest]: https://github.com/lviggiano/owner/blob/master/owner/src/test/java/io/github/qubitpi/owner/typeconversion/ConverterClassTest.java
+  [ConverterClassTest]: https://github.com/lviggiano/owner/blob/master/owner/src/test/java/org/aeonbits/owner/typeconversion/ConverterClassTest.java
 
 All the types supported by OWNER
 --------------------------------
@@ -329,7 +329,7 @@ See also [`PropertyEditorSupport`][propeditsupport], it may be useful if you wan
   [propeditmanager]: http://docs.oracle.com/javase/7/docs/api/java/beans/PropertyEditorManager.html#registerEditor
   [propedit]: http://docs.oracle.com/javase/7/docs/api/java/beans/PropertyEditor.html
   [propeditsupport]:http://docs.oracle.com/javase/7/docs/api/java/beans/PropertyEditorSupport.html
-  [PropertyEditorTest]:https://github.com/lviggiano/owner/blob/master/src/test/java/io/github/qubitpi/owner/editor/PropertyEditorTest.java
+  [PropertyEditorTest]:https://github.com/lviggiano/owner/blob/master/src/test/java/org/aeonbits/owner/editor/PropertyEditorTest.java
 
 Converter classes shipped with OWNER
 ------------------------------------
@@ -384,12 +384,12 @@ The suffixes supported by DurationConverter are:
 
 The Java API does not provide any classes to represent data sizes. Therefore,
 OWNER provides this functionality with a set of classes in the
-`io.github.qubitpi.owner.util.bytesize` package: `ByteSize` and `ByteSizeUnit`.
+`org.aeonbits.owner.util.bytesize` package: `ByteSize` and `ByteSizeUnit`.
 
 The usage of these classes is best explained with an example:
 
 ```java
-
+import org.aeonbits.owner.util.bytesize.*;
 
 [...]
 

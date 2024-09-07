@@ -150,7 +150,7 @@ As for the `ConfigFactory` you can pass a list of imports to `ConfigCache`. In f
 pretty similar to `ConfigFactory`:
 
 ```java
-public final class io.github.qubitpi.owner.ConfigCache {
+public final class org.aeonbits.owner.ConfigCache {
   public static <T extends Config> T getOrCreate(Class<? extends T> clazz, Map<?, ?>... imports);
   public static <T extends Config> T getOrCreate(Factory factory, Class<? extends T> clazz, Map<?, ?>... imports);
   public static <T extends Config> T getOrCreate(Object id, Class<? extends T> clazz, Map<?, ?>... imports);

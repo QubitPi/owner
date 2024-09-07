@@ -90,7 +90,7 @@ reload doing frequent heavy operations like these.
 You can still perform the reload programmatically, using the [Reloadable]
 interface, for these cases.
 
-  [Reloadable]: https://matteobaccan.github.io/owner/apidocs/latest/io/github/qubitpi/owner/Reloadable.html
+  [Reloadable]: https://matteobaccan.github.io/owner/apidocs/latest/org/aeonbits/owner/Reloadable.html
 
 While instead, monitoring the filesystem is not a big deal, also because
 filesystems implement 'last modification date' that can be checked to detect
@@ -121,7 +121,7 @@ enum HotReloadType {
 
 You can check the [latest javadocs] for further details.
 
-  [latest javadocs]: https://matteobaccan.github.io/owner/apidocs/latest/io/github/qubitpi/owner/Config.HotReload.html
+  [latest javadocs]: https://matteobaccan.github.io/owner/apidocs/latest/org/aeonbits/owner/Config.HotReload.html
 
 So you can specify also the interval for the hot reload, expressed by `value`
 and `unit`, and you can also specify the type of hot reload that you need.
@@ -297,7 +297,7 @@ $ cd owner
 $ mvn clean compile test-compile
 $ java -classpath \
        target/classes/:target/test-classes/ \
-       io.github.qubitpi.owner.examples.AutoReloadExample
+       org.aeonbits.owner.examples.AutoReloadExample
 ```
 
 Then you can change the file indicated by the program to see the changes being
