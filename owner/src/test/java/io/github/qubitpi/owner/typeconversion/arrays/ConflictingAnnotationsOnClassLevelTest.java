@@ -46,8 +46,8 @@ public class ConflictingAnnotationsOnClassLevelTest {
             fail("UnsupportedOperationException expected");
         } catch (UnsupportedOperationException ex) {
             assertThat(ex.getMessage(),
-                    equalTo("You cannot specify @Separator and @TokenizerClass both together on class level for 'org" +
-                            ".aeonbits.owner.typeconversion.arrays.ConflictingAnnotationsOnClassLevelTest" +
+                    equalTo("You cannot specify @Separator and @TokenizerClass both together on class level for " +
+                            "'io.github.qubitpi.owner.typeconversion.arrays.ConflictingAnnotationsOnClassLevelTest" +
                             ".ConflictingAnnotationsOnClassLevel'"));
         }
     }
