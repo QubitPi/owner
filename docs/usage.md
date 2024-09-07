@@ -173,9 +173,9 @@ java objects. But if we call the method `int port()` then a
   We support <code>Optional</code> as the returned config value. For example, instead of
   <code>int maxNumThreads();</code>, write it as <code>Optional&lt;Integer&gt; maxNumThreads();</code>.
   
-  <pre>
-  Optional&lt;Integer&gt; maxNumThreads();
-  </pre>
+  ```java
+  Optional<Integer> maxNumThreads();
+  ```
 
   To make a default
   value in this case, simply use the same annotation such as <code>@DefaultValue("8")</code>. The feature is based on
@@ -193,10 +193,12 @@ java objects. But if we call the method `int port()` then a
   runtime-errors.
 
   <br>
+  <br>
 
   "<i>Why not using the original's <a href="https://matteobaccan.github.io/owner/docs/type-conversion/"><code>@ConverterClass</code></a></i>
   or a wrapper?"
 
+  <br>
   <br>
 
   Because we tried and concluded they are suboptimal in our case:
